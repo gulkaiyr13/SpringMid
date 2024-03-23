@@ -2,12 +2,15 @@ package com.example.springmid.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
 public class Order {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,16 +27,21 @@ public class Order {
 
     private double totalPrice;
     private String orderStatus;
+    private int quantity;
 
-    public void setOrderId(long l) {
+
+    public void setOrderPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public void setQuantity(int i) {
+
+    public void setOrderId(long id) {
+        this.id=id;
     }
 
-    public void setUser(User user) {
+    public void setQuantity(int quantity) {
+        this.quantity=quantity;
     }
 
-    public void setProduct(Product product) {
-    }
+
 }

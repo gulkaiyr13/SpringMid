@@ -82,7 +82,6 @@ public class DataBootstrap implements CommandLineRunner {
             Product product = productRepository.findById(Long.parseLong(data[3])).orElse(null); // Assuming the fourth value is the product ID
 
             order.setUser(user);
-            order.setProduct(product);
 
             orderRepository.save(order);
         }

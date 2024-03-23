@@ -1,20 +1,24 @@
 package com.example.springmid.services;
 
+import com.example.springmid.dto.OrderDTO;
+import com.example.springmid.entities.Order;
 import com.example.springmid.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class OrderService {
-    private final OrderRepository orderRepository;
+public interface OrderService {
+    List<Order> getAllOrders();
 
-    @Autowired
-    public OrderService(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
+    Order getOrderById(Long id);
 
-    public Object getAllOrders(){
-        return orderRepository.findAll();
-    }
+    Order createOrder(Order order);
 
+    Order updateOrder(Long id, Order order);
+
+    void deleteOrder(Long id);
+
+    OrderDTO saveOrder(OrderDTO newOrder);
 }
