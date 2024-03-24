@@ -20,4 +20,7 @@ public class OrderItem {
 
     private int quantity;
     private double price;
+
+    public OrderItem(String s, int i, double v) {
+    }
 }

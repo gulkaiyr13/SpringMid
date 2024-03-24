@@ -9,6 +9,7 @@ public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     @Mapping(target = "id", ignore = true)
-    User userDtoToUser(UserDTO userDTO);
-    UserDTO userToUserDto(User user);
+    User userDTOToUser(UserDTO userDTO);
+
+    UserDTO userToUserDTO(User user);
 }

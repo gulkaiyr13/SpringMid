@@ -1,7 +1,9 @@
 package com.example.springmid.services;
 
+import com.example.springmid.dto.OrderDTO;
 import com.example.springmid.entities.Order;
 import com.example.springmid.entities.OrderItem;
+import com.example.springmid.mappers.OrderMapper;
 import com.example.springmid.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -15,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public abstract class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService{
     @Autowired
     private OrderRepository orderRepository;
 
@@ -77,5 +79,14 @@ public abstract class OrderServiceImpl implements OrderService{
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found with id: " + id);
         }
+    }
+
+    @Override
+    public OrderDTO saveOrder(OrderDTO newOrder) {
+        Order orderToSave = OrderMapper.INSTANCE.orderDTOToOrder(newOrder);
+
+        Order savedOrder = orderRepository.save(orderToSave);
+
+        return OrderMapper.INSTANCE.orderToOrderDTO(savedOrder);
     }
 }

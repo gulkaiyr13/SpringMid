@@ -54,7 +54,7 @@ public class OrderDTO {
         this.userId = userId;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -68,5 +68,12 @@ public class OrderDTO {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public void setOrderId(long l) {
+
+    }
+
+    public short getOrderId() {
     }
 }
