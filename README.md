@@ -31,24 +31,21 @@ Test classes for entities, controllers, services, and mappers.
 Usage
 To use the SpringMid project, follow these steps:
 
-Clone the repository to your local machine:
+1) Clone the repository to your local machine:
 
-bash
-Copy code
 git clone https://github.com/your-username/springmid.git
-Set up your database configuration in application.properties.
 
-Build the project using Maven:
+2)Set up your database configuration in application.properties.
 
-bash
-Copy code
+3)Build the project using Maven:
+
 mvn clean package
-Run the application:
 
-bash
-Copy code
+4) Run the application:
+
 java -jar target/springmid.jar
-Access the application through the provided endpoints.
+
+5) Access the application through the provided endpoints.
 
 Dependencies
 The project uses the following dependencies:
@@ -56,7 +53,6 @@ The project uses the following dependencies:
 Spring Boot
 Spring Data JPA
 Lombok
-Jakarta Persistence (JPA)
 Ensure that these dependencies are installed and configured properly in your environment.
 
 Contributing
