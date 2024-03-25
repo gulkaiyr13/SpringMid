@@ -2,9 +2,11 @@ package com.example.springmid.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +23,4 @@ public class OrderItem {
     private int quantity;
     private double price;
 
-    public OrderItem(String s, int i, double v) {
-    }
 }
