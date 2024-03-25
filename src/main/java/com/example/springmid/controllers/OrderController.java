@@ -1,36 +1,48 @@
-//package com.example.springmid.controllers;
-//import com.example.springmid.services.OrderService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.validation.annotation.Validated;
-//import org.springframework.web.bind.annotation.*;
-//
-//@RestController
-//@RequestMapping("/api/v1/order")
-//public class OrderController {
-//    @Autowired
-//    private OrderService orderService;
-//
-//    @PostMapping()
-//    public ResponseEntity<OrderDTO> createOrder(@Validated @RequestBody OrderDTO newOrder) {
-//        newOrder.setId(null);
-//        OrderDTO savedOrder = orderService.saveOrder(newOrder);
-//        return ResponseEntity.ok(savedOrder);
-//    }
-//
-//
-////    @GetMapping("/{id}")
-////    public ResponseEntity<OrderDTO> getOrderById(@PathVariable Long id) {
-////        // Retrieve the order from the service layer
-////        Optional<OrderDTO> orderOptional = orderService.getOrderById(id);
-////
-////        // Check if the order exists
-////        if (orderOptional.isPresent()) {
-////            // Return the order along with HTTP status 200 (OK)
-////            return ResponseEntity.ok(orderOptional.get());
-////        } else {
-////            // If the order is not found, return HTTP status 404 (Not Found)
-////            return ResponseEntity.notFound().build();
-////        }
-////    }
-//}
+package com.example.springmid.controllers;
+
+import com.example.springmid.dto.response.OrderResponseDTO;
+import com.example.springmid.dto.reuest.OrderRequestDTO;
+import com.example.springmid.services.OrderService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/orders")
+public class OrderController {
+
+    private final OrderService orderService;
+
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
+    @PostMapping
+    public ResponseEntity<OrderResponseDTO> createOrder(@Valid @RequestBody OrderRequestDTO orderRequestDTO) {
+        return new ResponseEntity<>(orderService.create(orderRequestDTO), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<OrderResponseDTO> updateOrder(@PathVariable Long id, @Valid @RequestBody OrderRequestDTO orderRequestDTO) {
+        return new ResponseEntity<>(orderService.update(id, orderRequestDTO), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponseDTO> getOrder(@PathVariable Long id) {
+        return new ResponseEntity<>(orderService.get(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<OrderResponseDTO>> getAllOrdersByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(orderService.getAll(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
+        orderService.deleteOrder(id);
+        return ResponseEntity.noContent().build();
+    }
+}

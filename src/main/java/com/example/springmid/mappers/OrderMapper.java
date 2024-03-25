@@ -1,14 +1,16 @@
-//package com.example.springmid.mappers;
-//
-//import com.example.springmid.entities.Order;
-//import org.mapstruct.Mapper;
-//import org.mapstruct.Mapping;
-//
-//@Mapper(componentModel = "spring")
-//public interface OrderMapper {
-//
-//    @Mapping(target = "id", ignore = true)
-//    Order orderDTOToOrder(OrderDTO orderDTO);
-//
-//    OrderDTO orderToOrderDTO(Order order);
-//}
+package com.example.springmid.mappers;
+
+import com.example.springmid.dto.response.OrderResponseDTO;
+import com.example.springmid.dto.reuest.OrderRequestDTO;
+import com.example.springmid.entities.Order;
+import com.example.springmid.entities.Product;
+import com.example.springmid.entities.User;
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring", uses = {User.class, Product.class})
+public interface OrderMapper {
+
+    Order toEntity(OrderRequestDTO orderRequestDTO);
+
+    OrderResponseDTO toDTO(Order order);
+}
