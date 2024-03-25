@@ -1,23 +1,16 @@
 package com.example.springmid.services;
 
-import com.example.springmid.entities.Order;
-import org.springframework.stereotype.Service;
+import com.example.springmid.dto.response.OrderResponseDTO;
+import com.example.springmid.dto.reuest.OrderRequestDTO;
 
 import java.util.List;
 
-@Service
 public interface OrderService {
 
-//    OrderDTO saveOrder(OrderDTO newOrder);
-//
-//    List<Order> getAllOrders();
-//
-//    Order getOrderById(Long id);
-//
-//    Order createOrder(Order order);
-//
-//    Order updateOrder(Long id, Order order);
-//
-//    void deleteOrder(Long id);
+    OrderResponseDTO create(OrderRequestDTO orderRequestDTO);
+    OrderResponseDTO update(Long id, OrderRequestDTO orderRequestDTO);
+    OrderResponseDTO get(Long id);
+    List<OrderResponseDTO> getAll(Long id);
+    void deleteOrder(Long id);
 
 }
