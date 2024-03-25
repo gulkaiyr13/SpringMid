@@ -1,5 +1,5 @@
 SpringMid Project
-SpringMid is a Java Spring Boot project that implements an application for managing orders, users, and products. This README provides an overview of the project structure and usage instructions.
+A Java Spring Boot project that implements an application for managing orders, users, and products. This README provides an overview of the project structure and usage instructions.
 
 Project Structure
 The project is structured as follows:
