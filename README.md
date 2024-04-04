@@ -1,6 +1,8 @@
 SpringMid Project
 A Java Spring Boot project that implements an application for managing orders, users, and products. This README provides an overview of the project structure and usage instructions.
 
+-!VIDEO https://youtu.be/3X29qzSddb0 я удалила проект после того как загрузила в гит, потом вы сказали, что надо видео записать, я скачала и там некоторые файлы горят красным, так как нет в гиде, хотя я не связывала, в общем автоматически так получилось.
+
 Project Structure
 The project is structured as follows:
 
