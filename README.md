@@ -33,7 +33,7 @@ To use the SpringMid project, follow these steps:
 
 1) Clone the repository to your local machine:
 
-git clone https://github.com/your-username/springmid.git
+git clone https://github.com/gulkaiyr13/springmid.git
 
 2)Set up your database configuration in application.properties.
 
