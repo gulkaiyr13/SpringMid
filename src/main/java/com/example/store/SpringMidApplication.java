@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync(proxyTargetClass = true)
-@OpenAPIDefinition(info = @Info(title = "OnlineStore"))
+@OpenAPIDefinition(info = @Info(title = "Store"))
 @SecurityScheme(
         name = "JWT",
         type = SecuritySchemeType.HTTP,
