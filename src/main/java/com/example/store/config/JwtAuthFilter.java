@@ -1,7 +1,7 @@
 package com.example.store.config;
 
-import com.example.springmid.service.impl.JwtService;
-import com.example.springmid.service.impl.UserDetailsServiceImpl;
+import com.example.store.services.impl.JwtService;
+import com.example.store.services.impl.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
