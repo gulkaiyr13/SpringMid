@@ -18,7 +18,7 @@ public class ConfirmationToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    private static final int EXPIRATION_TIME_IN_HOURS = 1;
+    private static final int EXPIRATION_TIME_IN_HOURS = 24;
     private String token;
     private LocalDateTime createdAt;
     private LocalDateTime expiredAt;
