@@ -57,19 +57,20 @@ public class OrderController {
         return new ResponseEntity<>(orderService.get(id), HttpStatus.OK);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/user")
     @Operation(
             summary = "Getting all orders of user"
     )
     @SecurityRequirement(name = "JWT")
-    public ResponseEntity<List<OrderResponseDTO>> getAllOrdersByUserId(@PathVariable Long id) {
-        return new ResponseEntity<>(orderService.getAll(id), HttpStatus.OK);
+    public ResponseEntity<List<OrderResponseDTO>> getAllOrdersByUser(@AuthenticationPrincipal User user) {
+        return new ResponseEntity<>(orderService.getAll(user.getId()), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     @Operation(
             summary = "Order deleting"
     )
+    @SecurityRequirement(name = "JWT")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
         return ResponseEntity.noContent().build();

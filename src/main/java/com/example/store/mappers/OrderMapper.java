@@ -7,7 +7,7 @@ import com.example.store.entities.Product;
 import com.example.store.entities.User;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring", uses = {User.class, Product.class})
+@Mapper(componentModel = "spring")
 public interface OrderMapper {
 
     Order toEntity(OrderRequestDTO orderRequestDTO);

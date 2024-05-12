@@ -7,6 +7,7 @@ import com.example.store.entities.Product;
 import com.example.store.entities.User;
 import com.example.store.exceptions.GeneralException;
 import com.example.store.mappers.OrderMapper;
+import com.example.store.mappers.ProductMapper;
 import com.example.store.repositories.OrderRepository;
 import com.example.store.repositories.ProductRepository;
 import com.example.store.services.OrderService;
@@ -44,9 +45,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponseDTO update(Long id, OrderRequestDTO orderRequestDTO) {
         Order order = orderRepository.findById(id).orElseThrow(() -> new GeneralException("Order not found"));
-        order.setOrderDate(orderRequestDTO.getOrderDate());
-        order.setProducts(orderRequestDTO.getProducts());
-        order.setTotalPrice(orderRequestDTO.getTotalPrice());
+        Product product = productRepository.findById(orderRequestDTO.getProductId())
+                        .orElseThrow(() -> new GeneralException("Product not found"));
+
+        order.setProduct(product);
+        order.setTotalPrice(product.getPrice());
 
         return orderMapper.toDTO(orderRepository.save(order));
     }
