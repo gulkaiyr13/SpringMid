@@ -3,9 +3,12 @@ package com.example.store.services.impl;
 import com.example.store.dto.response.OrderResponseDTO;
 import com.example.store.dto.request.OrderRequestDTO;
 import com.example.store.entities.Order;
+import com.example.store.entities.Product;
+import com.example.store.entities.User;
 import com.example.store.exceptions.GeneralException;
 import com.example.store.mappers.OrderMapper;
 import com.example.store.repositories.OrderRepository;
+import com.example.store.repositories.ProductRepository;
 import com.example.store.services.OrderService;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +19,25 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
+    private final ProductRepository productRepository;
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper, ProductRepository productRepository) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
+        this.productRepository = productRepository;
     }
 
     @Override
-    public OrderResponseDTO create(OrderRequestDTO orderRequestDTO) {
-        Order order = orderMapper.toEntity(orderRequestDTO);
+    public OrderResponseDTO create(OrderRequestDTO orderRequestDTO, User user) {
+        Product product = productRepository.findById(orderRequestDTO.getProductId())
+                .orElseThrow(() -> new GeneralException("Product not found"));
+
+        Order order = new Order();
+        order.setProduct(product);
+        order.setUser(user);
+        order.setTotalPrice(product.getPrice());
         orderRepository.save(order);
+
         return orderMapper.toDTO(order);
     }
 

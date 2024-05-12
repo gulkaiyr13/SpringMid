@@ -2,6 +2,7 @@ package com.example.store.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,15 +15,17 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private LocalDateTime orderDate;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
     private double totalPrice;
 }

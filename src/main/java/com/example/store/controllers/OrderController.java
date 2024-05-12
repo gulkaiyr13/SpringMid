@@ -2,6 +2,7 @@ package com.example.store.controllers;
 
 import com.example.store.dto.response.OrderResponseDTO;
 import com.example.store.dto.request.OrderRequestDTO;
+import com.example.store.entities.User;
 import com.example.store.services.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -10,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,8 +34,9 @@ public class OrderController {
             summary = "Order creating"
     )
     @SecurityRequirement(name = "JWT")
-    public ResponseEntity<OrderResponseDTO> createOrder(@Valid @RequestBody OrderRequestDTO orderRequestDTO) {
-        return new ResponseEntity<>(orderService.create(orderRequestDTO), HttpStatus.CREATED);
+    public ResponseEntity<OrderResponseDTO> createOrder(@Valid @RequestBody OrderRequestDTO orderRequestDTO,
+                                                        @AuthenticationPrincipal User user) {
+        return new ResponseEntity<>(orderService.create(orderRequestDTO, user), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
